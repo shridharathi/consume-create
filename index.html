@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>consume:create — make room for making</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-row">
+          <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+          <span class="brand-name">consume:create</span>
+        </div>
+
+        <div class="sidebar-section-label">Your day</div>
+        <nav class="main-nav" aria-label="Main navigation">
+          <button class="nav-item active" data-view="overview"><span class="nav-icon">◒</span>Overview</button>
+          <button class="nav-item" data-view="classify"><span class="nav-icon">↗</span>Classify apps</button>
+          <button class="nav-item" data-view="settings"><span class="nav-icon">◌</span>Settings</button>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="sync-dot"><i></i>Tracking on this Mac</div>
+          <div class="profile-chip"><div class="avatar">SA</div><div><strong>Shri</strong><small>Personal space</small></div><span>⌄</span></div>
+        </div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Thursday, September 19 <span class="live-pill"><i></i> Live</span></p>
+            <h1 id="page-title">A day with a little more making.</h1>
+          </div>
+          <div class="top-actions"><button class="icon-button" title="Notifications">♧<span class="notification-dot"></span></button><button class="help-button">?</button></div>
+        </header>
+
+        <section id="view-overview" class="view active-view">
+          <div class="hero-grid">
+            <article class="balance-card">
+              <div class="card-topline"><span class="label">TODAY'S BALANCE</span><span class="date-select">Today <span>⌄</span></span></div>
+              <div class="balance-copy"><div><div class="balance-number"><span id="consume-percent">64</span><small>%</small></div><p>consumed</p></div><div class="balance-state"><span class="state-dot"></span><strong>Still in range</strong><small>Your 70% limit is safe</small></div></div>
+              <div class="sideways-battery" aria-label="64 percent consumption, within 70 percent limit"><div class="battery-fill"></div><div class="limit-marker"><span>70%</span></div></div>
+              <div class="battery-legend"><span><i class="swatch consume"></i>Consume <strong>4h 06m</strong></span><span><i class="swatch create"></i>Create <strong>2h 18m</strong></span><span class="goal-copy">goal <strong>70 / 30</strong></span></div>
+            </article>
+
+            <article class="streak-card">
+              <div class="card-topline"><span class="label">YOUR RHYTHM</span><span class="trend">↑ 12% this week</span></div>
+              <div class="streak-number">3<span> days</span></div>
+              <p class="streak-copy">in a row with time left<br />for the things you make.</p>
+              <div class="week-dots"><span class="done">M</span><span class="done">T</span><span class="done">W</span><span class="today">T</span><span>F</span><span>S</span><span>S</span></div>
+              <div class="streak-footer"><span>Longest streak</span><strong>8 days</strong></div>
+            </article>
+          </div>
+
+          <div class="section-heading"><div><span class="section-kicker">THE SHAPE OF YOUR DAY</span><h2>Where your hours went</h2></div><button class="text-button">See full history <span>→</span></button></div>
+          <div class="analytics-grid">
+            <article class="chart-card">
+              <div class="chart-head"><div><strong>Time by hour</strong><small>Today, 8:00 AM — now</small></div><div class="chart-legend"><span><i class="swatch create"></i>create</span><span><i class="swatch consume"></i>consume</span></div></div>
+              <div class="hour-chart"><div class="y-labels"><span>60m</span><span>40m</span><span>20m</span><span>0</span></div><div class="chart-area"><div class="grid-line l1"></div><div class="grid-line l2"></div><div class="grid-line l3"></div><div class="grid-line l4"></div><div class="bars"><div class="bar-group"><i class="bar create-bar" style="height:34%"></i><i class="bar consume-bar" style="height:16%"></i><small>8a</small></div><div class="bar-group"><i class="bar create-bar" style="height:20%"></i><i class="bar consume-bar" style="height:48%"></i><small>9a</small></div><div class="bar-group"><i class="bar create-bar" style="height:72%"></i><i class="bar consume-bar" style="height:10%"></i><small>10a</small></div><div class="bar-group"><i class="bar create-bar" style="height:44%"></i><i class="bar consume-bar" style="height:30%"></i><small>11a</small></div><div class="bar-group"><i class="bar create-bar" style="height:62%"></i><i class="bar consume-bar" style="height:9%"></i><small>12p</small></div><div class="bar-group"><i class="bar create-bar" style="height:25%"></i><i class="bar consume-bar" style="height:65%"></i><small>1p</small></div><div class="bar-group"><i class="bar create-bar" style="height:31%"></i><i class="bar consume-bar" style="height:54%"></i><small>2p</small></div><div class="bar-group current"><i class="bar create-bar" style="height:51%"></i><i class="bar consume-bar" style="height:42%"></i><small>3p</small></div></div></div></div>
+            </article>
+            <article class="insight-card"><div class="insight-icon">✦</div><span class="section-kicker">A SMALL OBSERVATION</span><h3>You create best after a little input.</h3><p>Your most productive block started after 20 minutes of reading. Keep the input — just give it an edge.</p><button class="outline-button">Set a gentle nudge <span>→</span></button></article>
+          </div>
+
+          <div class="section-heading apps-heading"><div><span class="section-kicker">THE CAST</span><h2>Your apps, by intention</h2></div><button class="text-button" data-view-link="classify">Manage apps <span>→</span></button></div>
+          <div class="apps-list">
+            <div class="app-row"><div class="app-icon claude">✳</div><div class="app-name"><strong>Claude Code</strong><small>Creation · 1h 04m</small></div><div class="app-bar"><span style="width:82%;background:#b9e7c9"></span></div><b>1h 04m</b><span class="arrow">↗</span></div>
+            <div class="app-row"><div class="app-icon safari">◉</div><div class="app-name"><strong>Safari</strong><small>Consumption · 1h 42m</small></div><div class="app-bar"><span style="width:100%;background:#ff806f"></span></div><b>1h 42m</b><span class="arrow">↗</span></div>
+            <div class="app-row"><div class="app-icon notion">N</div><div class="app-name"><strong>Notion</strong><small>Creation · 42m</small></div><div class="app-bar"><span style="width:48%;background:#b9e7c9"></span></div><b>42m</b><span class="arrow">↗</span></div>
+            <div class="app-row"><div class="app-icon xapp">𝕏</div><div class="app-name"><strong>X</strong><small>Consumption · 38m</small></div><div class="app-bar"><span style="width:37%;background:#ff806f"></span></div><b>38m</b><span class="arrow">↗</span></div>
+          </div>
+        </section>
+
+        <section id="view-classify" class="view secondary-view"><div class="secondary-header"><span class="section-kicker">YOUR RULES</span><h2>Make the distinction yours.</h2><p>Tell consume:create what “making” and “taking in” look like for you. You can change these any time.</p></div><div class="classification-layout"><div class="rule-column"><div class="rule-title"><span class="rule-dot create-dot"></span><div><h3>Creation</h3><p>Things that move your work forward.</p></div><span class="count">4 apps</span></div><div class="class-apps"><div class="class-app"><span class="app-icon claude">✳</span><span>Claude Code</span><button class="remove">−</button></div><div class="class-app"><span class="app-icon notion">N</span><span>Notion</span><button class="remove">−</button></div><div class="class-app"><span class="app-icon word">W</span><span>Microsoft Word</span><button class="remove">−</button></div><div class="class-app"><span class="app-icon cursor">⌁</span><span>Cursor</span><button class="remove">−</button></div></div><button class="add-button">+ Add an app</button></div><div class="rule-column consumption"><div class="rule-title"><span class="rule-dot consume-dot"></span><div><h3>Consumption</h3><p>Things you enjoy, but that fill the cup.</p></div><span class="count">4 apps</span></div><div class="class-apps"><div class="class-app"><span class="app-icon safari">◉</span><span>Safari</span><button class="remove">−</button></div><div class="class-app"><span class="app-icon xapp">𝕏</span><span>X</span><button class="remove">−</button></div><div class="class-app"><span class="app-icon youtube">▶</span><span>YouTube</span><button class="remove">−</button></div><div class="class-app"><span class="app-icon reddit">r/</span><span>Reddit</span><button class="remove">−</button></div></div><button class="add-button">+ Add an app</button></div></div></section>
+
+        <section id="view-settings" class="view secondary-view"><div class="secondary-header"><span class="section-kicker">YOUR GUARDRAILS</span><h2>Keep the signal gentle.</h2><p>Set the boundary that feels useful, not punitive.</p></div><div class="settings-card"><div class="setting-row"><div><strong>Consumption limit</strong><p>We'll nudge you when consumption passes this share of your day.</p></div><div class="limit-control"><span id="limit-value">70%</span><input id="limit-slider" type="range" min="40" max="90" value="70" /></div></div><div class="setting-row"><div><strong>Daily reset</strong><p>Choose when a new day begins.</p></div><button class="select-button">5:00 AM <span>⌄</span></button></div><div class="setting-row"><div><strong>Gentle nudges</strong><p>A small notification when your balance starts to drift.</p></div><button class="toggle on" aria-label="Toggle gentle nudges"><span></span></button></div><div class="setting-row"><div><strong>Menu bar widget</strong><p>Show today's ratio at a glance in your menu bar.</p></div><button class="toggle on" aria-label="Toggle menu bar widget"><span></span></button></div></div></section>
+      </main>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
