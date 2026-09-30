@@ -2,6 +2,16 @@
 
 A native macOS 14+ menu bar app and WidgetKit desktop widget for balancing consumption and creation. The earlier HTML/CSS prototype is retained at the repository root; the shipping implementation is in `native/`.
 
+## Screenshots
+
+The dashboard shows the live consume/create ratio, the draggable daily target, and the apps and websites contributing to each side.
+
+![consume:create dashboard](docs/screenshots/consume-create-dashboard.png)
+
+The desktop widget keeps the balance visible at a glance.
+
+![consume:create widget](docs/screenshots/consume-create-widget.png)
+
 ## Run on this Mac
 
 Open `native/ConsumeCreate.xcodeproj`, select the **ConsumeCreate** scheme, and run with **My Mac** as the destination. Or build from Terminal:
