@@ -24,7 +24,11 @@ struct Dashboard: View {
         .preferredColorScheme(.dark)
         .overlay {
             if let blocked = tracker.blockedActivity {
-                BlockNotice(blocked: blocked) { tracker.dismissBlockNotice() }
+                BlockNotice(
+                    blocked: blocked,
+                    dismiss: { tracker.dismissBlockNotice() },
+                    turnOffBlocker: { tracker.setAutomaticBlocking(false) }
+                )
             }
         }
         .sheet(item: $sheet) { selection in
@@ -140,6 +144,7 @@ struct Dashboard: View {
 private struct BlockNotice: View {
     let blocked: BlockedActivity
     let dismiss: () -> Void
+    let turnOffBlocker: () -> Void
 
     var body: some View {
         ZStack {
@@ -157,9 +162,19 @@ private struct BlockNotice: View {
                     .foregroundStyle(BalanceStyle.secondary)
                     .lineSpacing(5)
                     .frame(maxWidth: 470, alignment: .leading)
-                Button("Back to creating") { dismiss() }
-                    .buttonStyle(PrimaryAction())
-                    .padding(.top, 8)
+                HStack(spacing: 16) {
+                    Button("Back to creating") { dismiss() }
+                        .buttonStyle(PrimaryAction())
+                    Button("Turn off blocker") { turnOffBlocker() }
+                        .buttonStyle(.plain)
+                        .font(AppTypography.font(14, weight: .medium))
+                        .foregroundStyle(BalanceStyle.secondary)
+                }
+                .padding(.top, 8)
+                Text("You can turn it back on anytime in Preferences.")
+                    .font(AppTypography.caption)
+                    .foregroundStyle(BalanceStyle.secondary)
+                    .padding(.top, -10)
             }
             .frame(maxWidth: 560, alignment: .leading)
             .padding(50)
