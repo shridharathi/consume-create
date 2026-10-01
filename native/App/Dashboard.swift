@@ -62,6 +62,7 @@ struct Dashboard: View {
                         .overlay(RoundedRectangle(cornerRadius: 26).stroke(.white.opacity(0.08)))
                         .shadow(color: BalanceStyle.consumeFill(tracker.state).opacity(0.10), radius: 30, y: 10)
                     HStack {
+                        blockerButton
                         Spacer()
                         subtleButton("Edit apps & websites", systemImage: "slider.horizontal.3") { sheet = .apps }
                     }
@@ -98,6 +99,24 @@ struct Dashboard: View {
                 iconButton("gearshape", help: "Preferences") { sheet = .preferences }
             }
         }
+    }
+
+    private var blockerButton: some View {
+        Button {
+            tracker.setAutomaticBlocking(!tracker.state.blocksConsumeAutomatically)
+        } label: {
+            Label(
+                tracker.state.blocksConsumeAutomatically ? "Blocker on" : "Blocker off",
+                systemImage: tracker.state.blocksConsumeAutomatically ? "lock.fill" : "lock.open"
+            )
+            .font(AppTypography.font(12, weight: .medium))
+            .padding(.horizontal, 11)
+            .padding(.vertical, 7)
+            .background(BalanceStyle.surfaceRaised, in: Capsule())
+        }
+        .buttonStyle(.plain)
+        .foregroundStyle(tracker.state.blocksConsumeAutomatically ? BalanceStyle.text : BalanceStyle.secondary)
+        .help(tracker.state.blocksConsumeAutomatically ? "Turn blocker off" : "Turn blocker on")
     }
 
     private func activityColumn(_ intention: Intention, accent: Color) -> some View {
