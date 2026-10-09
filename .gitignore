@@ -1,0 +1,5 @@
+.DS_Store
+native/build/
+dist/
+native/*.xcodeproj/xcuserdata/
+native/*.xcodeproj/project.xcworkspace/xcuserdata/

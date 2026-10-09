@@ -1,0 +1,73 @@
+name: ConsumeCreate
+options:
+  deploymentTarget:
+    macOS: '14.0'
+settings:
+  base:
+    SWIFT_VERSION: '5.0'
+    CODE_SIGN_STYLE: Automatic
+    CODE_SIGN_IDENTITY: 'Apple Development'
+    ENABLE_HARDENED_RUNTIME: YES
+    CURRENT_PROJECT_VERSION: 21
+    MARKETING_VERSION: '0.7.0'
+    CONSUME_CREATE_GROUP: $(DEVELOPMENT_TEAM).com.consumecreate.shared
+targets:
+  ConsumeCreate:
+    type: application
+    platform: macOS
+    sources:
+      - App
+      - Shared
+      - path: Resources
+        buildPhase: resources
+    dependencies:
+      - target: ConsumeCreateWidget
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.consumecreate.mac
+        PRODUCT_NAME: consume-create
+        CODE_SIGN_ENTITLEMENTS: App/ConsumeCreate.entitlements
+    info:
+      path: App/Info.plist
+      properties:
+        CFBundleDisplayName: consume:create
+        CFBundleName: consume:create
+        CFBundleShortVersionString: '0.7.0'
+        CFBundleVersion: '21'
+        ATSApplicationFontsPath: .
+        LSUIElement: true
+        NSAppleEventsUsageDescription: consume:create reads the active website domain in Safari or Chrome to classify your time. Page contents and full URLs are never saved.
+        ConsumeCreateGroup: $(CONSUME_CREATE_GROUP)
+        CFBundleURLTypes:
+          - CFBundleURLName: com.consumecreate.mac
+            CFBundleURLSchemes: [consume-create, counterbalance]
+  ConsumeCreateWidget:
+    type: app-extension
+    platform: macOS
+    sources:
+      - Widget
+      - Shared
+      - path: Resources
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.consumecreate.mac.widget
+        PRODUCT_NAME: consume-create-widget
+        CODE_SIGN_ENTITLEMENTS: Widget/Widget.entitlements
+        SKIP_INSTALL: YES
+    info:
+      path: Widget/Info.plist
+      properties:
+        CFBundleDisplayName: consume:create
+        CFBundleName: consume:create
+        CFBundleShortVersionString: '0.7.0'
+        CFBundleVersion: '21'
+        ATSApplicationFontsPath: .
+        ConsumeCreateGroup: $(CONSUME_CREATE_GROUP)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+schemes:
+  ConsumeCreate:
+    build:
+      targets:
+        ConsumeCreate: all
