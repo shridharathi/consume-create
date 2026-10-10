@@ -16,7 +16,7 @@ The desktop widget keeps the balance visible at a glance.
 
 [Download consume:create for macOS](https://github.com/shridharathi/consume-create/releases/latest/download/consume-create-0.7.0-macos.zip), unzip it, and drag `consume-create.app` to Applications.
 
-This first public build is development-signed but not yet Apple-notarized. On first launch, macOS may say it cannot verify the developer. Control-click `consume-create.app`, choose **Open**, then choose **Open** once more. You only need to do that for this downloaded copy—no Apple account, Team ID, Xcode, or terminal is required.
+The download is signed with a Developer ID certificate and notarized by Apple. No Apple account, Team ID, Xcode, or terminal is required to install it.
 
 ## Install or build
 
@@ -52,7 +52,7 @@ For ongoing personal use, copy the built app into your Applications folder befor
 
 ## First-run setup
 
-The welcome flow has three steps: welcome, sort apps/websites into consume and create, and drag the battery divider to set a goal. A final confirmation offers optional browser access and reminders. Cards have move arrows and keyboard-accessible menus as alternatives to dragging; the battery has presets and accessibility increment/decrement actions. You can rerun welcome from Preferences.
+The welcome flow has three steps: welcome, sort apps/websites into consume and create, and drag the battery divider or choose a preset to set a goal. A final confirmation offers optional browser access and reminders. Cards have move arrows and keyboard-accessible menus as alternatives to dragging; the battery has accessibility increment/decrement actions.
 
 Existing activity, classifications, notification settings, and goals survive upgrades through the shared App Group store.
 

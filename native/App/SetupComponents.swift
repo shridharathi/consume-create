@@ -96,6 +96,7 @@ struct RatioEditor: View {
     @Binding var ratio: Double
     @State private var dragging = false
     @State private var hoveringTarget = false
+    @State private var targetCursorActive = false
     private var consumePercent: Int { Int((ratio * 100).rounded()) }
 
     var body: some View {
@@ -123,7 +124,15 @@ struct RatioEditor: View {
                     dragging = true
                     ratio = Self.snapped(value.location.x / geometry.size.width)
                 }.onEnded { _ in dragging = false })
-                .onHover { hoveringTarget = $0 }
+                .onContinuousHover { phase in
+                    switch phase {
+                    case .active(let location):
+                        let targetX = geometry.size.width * ratio
+                        setTargetHover(abs(location.x - targetX) < 48)
+                    case .ended:
+                        setTargetHover(false)
+                    }
+                }
                 .help("Drag the target line to set your consume limit")
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel("Consume to create goal")
@@ -132,14 +141,32 @@ struct RatioEditor: View {
                     ratio = Self.snapped(ratio + (direction == .increment ? 0.05 : -0.05))
                 }
             }.frame(height: 180)
-            Text("Hover the target line, then drag it.").foregroundStyle(BalanceStyle.secondary)
             HStack(spacing: 10) {
-                preset(0.2, "20 : 80")
-                preset(0.3, "30 : 70")
-                preset(0.5, "50 : 50")
+                ForEach([10, 20, 30, 40, 50], id: \.self) { consume in
+                    Button {
+                        withAnimation(.easeOut(duration: 0.16)) {
+                            ratio = Double(consume) / 100
+                        }
+                    } label: {
+                        Text("\(consume):\(100 - consume)")
+                            .font(AppTypography.font(13, weight: .medium))
+                            .foregroundStyle(consumePercent == consume ? BalanceStyle.text : BalanceStyle.secondary)
+                            .padding(.horizontal, 13)
+                            .padding(.vertical, 8)
+                            .background(
+                                consumePercent == consume ? Color.white.opacity(0.12) : Color.clear,
+                                in: Capsule()
+                            )
+                    }
+                    .buttonStyle(.plain)
+                    .accessibilityLabel("\(consume) percent consume, \(100 - consume) percent create")
+                }
             }
+            .frame(maxWidth: .infinity)
+            Text("Hover the target line, then drag it.").foregroundStyle(BalanceStyle.secondary)
         }
         .onAppear { ratio = Self.snapped(ratio) }
+        .onDisappear { releaseTargetCursor() }
     }
 
     static func snapped(_ value: Double) -> Double {
@@ -153,12 +180,21 @@ struct RatioEditor: View {
         }
     }
 
-    private func preset(_ value: Double, _ label: String) -> some View {
-        Button { withAnimation(.snappy) { ratio = value } } label: {
-            Text(label).font(AppTypography.font(14, weight: .medium))
-                .padding(.horizontal, 17).padding(.vertical, 9)
-                .foregroundStyle(abs(ratio - value) < 0.01 ? BalanceStyle.ink : BalanceStyle.text)
-                .background(abs(ratio - value) < 0.01 ? BalanceStyle.accent : BalanceStyle.surfaceRaised, in: Capsule())
-        }.buttonStyle(.plain).accessibilityLabel("\(Int(value * 100)) percent consume goal")
+    private func setTargetHover(_ hovering: Bool) {
+        hoveringTarget = hovering
+        guard hovering != targetCursorActive else { return }
+        if hovering {
+            NSCursor.resizeLeftRight.push()
+        } else {
+            NSCursor.pop()
+        }
+        targetCursorActive = hovering
     }
+
+    private func releaseTargetCursor() {
+        guard targetCursorActive else { return }
+        NSCursor.pop()
+        targetCursorActive = false
+    }
+
 }

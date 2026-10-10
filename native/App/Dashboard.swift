@@ -8,19 +8,18 @@ private enum EditSheet: String, Identifiable {
 
 struct Dashboard: View {
     let tracker: ActivityTracker
-    @State private var replaySetup = false
     @State private var sheet: EditSheet?
 
     var body: some View {
         Group {
-            if tracker.state.onboardingComplete != true || replaySetup {
-                Onboarding(tracker: tracker) { replaySetup = false }
+            if tracker.state.onboardingComplete != true {
+                Onboarding(tracker: tracker) { }
             } else {
                 today
             }
         }
         .font(AppTypography.body)
-        .frame(minWidth: 720, minHeight: 700)
+        .frame(minWidth: 720, minHeight: tracker.state.onboardingComplete != true ? 820 : 700)
         .preferredColorScheme(.dark)
         .overlay {
             if let blocked = tracker.blockedActivity {
@@ -36,7 +35,7 @@ struct Dashboard: View {
             case .apps: RulesSheet(tracker: tracker)
             case .calendar: CalendarSheet(tracker: tracker)
             case .goal: GoalSheet(tracker: tracker)
-            case .preferences: PreferencesSheet(tracker: tracker) { sheet = nil; replaySetup = true }
+            case .preferences: PreferencesSheet(tracker: tracker)
             }
         }
     }
@@ -106,7 +105,7 @@ struct Dashboard: View {
         return VStack(alignment: .leading, spacing: 14) {
             HStack {
                 Circle().fill(accent).frame(width: 7, height: 7)
-                Text(intention.rawValue).font(AppTypography.font(14, weight: .semibold)).tracking(0.1)
+                Text(intention.rawValue).font(AppTypography.display(11, bold: true))
                 Spacer()
                 Text(UsageState.duration(tracker.state.total(intention)))
                     .font(AppTypography.font(14, weight: .semibold))
@@ -230,7 +229,6 @@ private struct GoalSheet: View {
 
 private struct PreferencesSheet: View {
     let tracker: ActivityTracker
-    let replay: () -> Void
     @Environment(\.dismiss) private var dismiss
     @State private var loginEnabled = SMAppService.mainApp.status == .enabled
     var body: some View {
@@ -259,7 +257,6 @@ private struct PreferencesSheet: View {
                 .font(AppTypography.caption).foregroundStyle(BalanceStyle.secondary)
             if let error = tracker.error { Text(error).font(AppTypography.caption).foregroundStyle(.red) }
             HStack {
-                Button("Show welcome again") { dismiss(); replay() }.buttonStyle(.borderless)
                 Spacer()
                 Button("Done") { dismiss() }.buttonStyle(PrimaryAction())
             }

@@ -94,7 +94,7 @@ struct ClassificationBoard: View {
     private func column(_ intention: Intention, color: Color) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
-                Text(intention.rawValue).font(AppTypography.font(26, weight: .semibold))
+                Text(intention.rawValue).font(AppTypography.display(18, bold: true))
                 Spacer()
                 Text("\(items.filter { category($0) == intention }.count)")
                     .font(AppTypography.font(13, weight: .medium))
@@ -107,7 +107,7 @@ struct ClassificationBoard: View {
                         Text("Drop something here").foregroundStyle(BalanceStyle.secondary).frame(maxWidth: .infinity, minHeight: 130)
                     }
                 }.padding(2)
-            }.frame(height: 300)
+            }.frame(height: 360)
             Menu {
                 Button("Add an app…") { addApplications(to: intention) }
                 Button("Add a website…") { website = ""; websiteError = nil; websiteColumn = intention }
@@ -136,8 +136,10 @@ struct ClassificationBoard: View {
                 .help("Move \(item.name) to \(intention == .consume ? "create" : "consume")")
                 .accessibilityLabel("Move \(item.name) to \(intention == .consume ? "create" : "consume")")
         }
-        .padding(10).background(BalanceStyle.surface, in: RoundedRectangle(cornerRadius: 12))
-        .contentShape(RoundedRectangle(cornerRadius: 12))
+        .padding(.vertical, 7)
+        .padding(.horizontal, 4)
+        .overlay(alignment: .bottom) { Rectangle().fill(.white.opacity(0.08)).frame(height: 1) }
+        .contentShape(Rectangle())
         .opacity(draggedID == item.id ? 0.35 : 1)
         .simultaneousGesture(cardDrag(item))
         .contextMenu {

@@ -15,7 +15,7 @@ enum AppTypography {
     }
 
     private static let registration: Void = {
-        for name in ["Archivo-Regular", "Archivo-Medium", "Archivo-SemiBold"] {
+        for name in ["Archivo-Regular", "Archivo-Medium", "Archivo-SemiBold", "Silkscreen-Regular", "Silkscreen-Bold"] {
             guard let url = Bundle.main.url(forResource: name, withExtension: "ttf") else { continue }
             CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
         }
@@ -24,6 +24,12 @@ enum AppTypography {
     static func font(_ size: CGFloat, weight: Weight = .regular) -> Font {
         _ = registration
         return .custom(weight.postScriptName, size: size)
+    }
+
+    /// Pixel display face reserved for the product mark and short visual headings.
+    static func display(_ size: CGFloat, bold: Bool = false) -> Font {
+        _ = registration
+        return .custom(bold ? "Silkscreen-Bold" : "Silkscreen-Regular", size: size)
     }
 
     static let caption2 = font(10)

@@ -20,6 +20,10 @@ xcodebuild \
   -derivedDataPath "$build_dir" \
   DEVELOPMENT_TEAM="$team_id" \
   CONSUME_CREATE_GROUP="$team_id.com.consumecreate.shared" \
+  CODE_SIGN_STYLE=Manual \
+  CODE_SIGN_IDENTITY="Developer ID Application" \
+  CODE_SIGN_INJECT_BASE_ENTITLEMENTS=NO \
+  OTHER_CODE_SIGN_FLAGS=--timestamp \
   build
 
 version="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$app/Contents/Info.plist")"
