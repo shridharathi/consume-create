@@ -8,8 +8,8 @@ settings:
     CODE_SIGN_STYLE: Automatic
     CODE_SIGN_IDENTITY: 'Apple Development'
     ENABLE_HARDENED_RUNTIME: YES
-    CURRENT_PROJECT_VERSION: 21
-    MARKETING_VERSION: '0.7.0'
+    CURRENT_PROJECT_VERSION: 22
+    MARKETING_VERSION: '0.7.1'
     CONSUME_CREATE_GROUP: $(DEVELOPMENT_TEAM).com.consumecreate.shared
   configs:
     Release:
@@ -36,8 +36,8 @@ targets:
       properties:
         CFBundleDisplayName: consume:create
         CFBundleName: consume:create
-        CFBundleShortVersionString: '0.7.0'
-        CFBundleVersion: '21'
+        CFBundleShortVersionString: '0.7.1'
+        CFBundleVersion: '22'
         ATSApplicationFontsPath: .
         LSUIElement: true
         NSAppleEventsUsageDescription: consume:create reads the active website domain in Safari or Chrome to classify your time. Page contents and full URLs are never saved.
@@ -64,8 +64,8 @@ targets:
       properties:
         CFBundleDisplayName: consume:create
         CFBundleName: consume:create
-        CFBundleShortVersionString: '0.7.0'
-        CFBundleVersion: '21'
+        CFBundleShortVersionString: '0.7.1'
+        CFBundleVersion: '22'
         ATSApplicationFontsPath: .
         ConsumeCreateGroup: $(CONSUME_CREATE_GROUP)
         NSExtension:

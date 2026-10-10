@@ -14,7 +14,7 @@ The desktop widget keeps the balance visible at a glance.
 
 ## Download
 
-[Download consume:create for macOS](https://github.com/shridharathi/consume-create/releases/latest/download/consume-create-0.7.0-macos.zip), unzip it, and drag `consume-create.app` to Applications.
+[Download consume:create for macOS](https://github.com/shridharathi/consume-create/releases/latest/download/consume-create-0.7.1-macos.zip), unzip it, and drag `consume-create.app` to Applications.
 
 The download is signed with a Developer ID certificate and notarized by Apple. No Apple account, Team ID, Xcode, or terminal is required to install it.
 
